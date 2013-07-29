@@ -1,6 +1,8 @@
 % Generate NatImExperiment Stimuli
 %LG 07-29-13
 
+addpath(genpath('/Volumes/lab/users/leon/'));
+
 files1  = dir('/Volumes/lab/users/leon/leon_textures/sourcetextures/cgtextures/*.jpg');
 files2  = dir('/Volumes/lab/users/leon/leon_textures/sourcetextures/mayang/*.JPG');
 files = [files1; files2];
