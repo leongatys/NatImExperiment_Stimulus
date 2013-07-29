@@ -1,10 +1,10 @@
 % Generate NatImExperiment Stimuli
 %LG 07-29-13
 
-addpath(genpath('/Volumes/lab/users/leon/'));
+addpath(genpath('/mnt/lab/users/leon/'));
 
-files1  = dir('/Volumes/lab/users/leon/leon_textures/sourcetextures/cgtextures/*.jpg');
-files2  = dir('/Volumes/lab/users/leon/leon_textures/sourcetextures/mayang/*.JPG');
+files1  = dir('/mnt/lab/users/leon/leon_textures/sourcetextures/cgtextures/*.jpg');
+files2  = dir('/mnt/lab/users/leon/leon_textures/sourcetextures/mayang/*.JPG');
 files = [files1; files2];
 sources = [ones(length(files1),1); 2*ones(length(files2),1)];
 
@@ -105,7 +105,7 @@ for count = 1 : 20
     idx = randperm(length(textures));
     textures = textures(idx);
     
-    save(sprintf('/Volumes/lab/users/leon/leon_textures/NatImTextures_%d',count),'textures')
+    save(sprintf('/mnt/lab/users/leon/leon_textures/NatImTextures_%d',count),'textures')
 end
 
 
