@@ -8,11 +8,12 @@ files2  = dir('/mnt/lab/users/leon/leon_textures/sourcetextures/mayang/*.JPG');
 files = [files1; files2];
 sources = [ones(length(files1),1); 2*ones(length(files2),1)];
 
-texSz = 512;
-scF = 2;
+
 
 for count = 1 : 20
     for f = 1 : length(files)
+        texSz = 512;
+        scF = 2;
         fprintf('texture %d',f)
         
         % read files
@@ -48,7 +49,7 @@ for count = 1 : 20
         x = texNat(:);
         u = tiedrank(x) / numel(x);    % convert to uniform
         x = norminv(u, mu, sig);     % feed through inverse CDF to convert to Gaussian
-        texNat = reshape(x, texSz, texSz); 
+        texNat = reshape(x, texSz, texSz);
         ndx = find(texNat == Inf); %get rid of Inf value
         s = sort(texNat(:));
         texNat(ndx) = s(end-1);
