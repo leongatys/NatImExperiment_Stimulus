@@ -1,4 +1,5 @@
-% generate pretextures for NatImExperiment stimuli
+% Generate NatImExperiment Stimuli
+%LG 07-29-13
 
 files1  = dir('/Volumes/lab/users/leon/leon_textures/sourcetextures/cgtextures/*.jpg');
 files2  = dir('/Volumes/lab/users/leon/leon_textures/sourcetextures/mayang/*.JPG');
@@ -45,7 +46,10 @@ for count = 1 : 20
         x = texNat(:);
         u = tiedrank(x) / numel(x);    % convert to uniform
         x = norminv(u, mu, sig);     % feed through inverse CDF to convert to Gaussian
-        texNat = reshape(x, texSz, texSz);
+        texNat = reshape(x, texSz, texSz); 
+        ndx = find(texNat == Inf); %get rid of Inf value
+        s = sort(texNat(:));
+        texNat(ndx) = s(end-1);
         
         
         % phase scramble texture
@@ -95,11 +99,11 @@ for count = 1 : 20
         
     end
     
-    textures.githash =
+    textures.githash = '150a50ae022f812fb47ee4c19710fdc2f5d16efe'; %for good version control ;)
     idx = randperm(length(textures));
     textures = textures(idx);
     
-    save(sprintf('/Volumes/lab/users/leon/leon_textures/NatImTextures_%d',c),'textures')
+    save(sprintf('/Volumes/lab/users/leon/leon_textures/NatImTextures_%d',count),'textures')
 end
 
 
