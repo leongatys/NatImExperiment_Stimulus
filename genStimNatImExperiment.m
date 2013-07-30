@@ -45,7 +45,7 @@ for count = 1 : 20
         
         %match texNat histogram to Gaussian
         mu = 0;
-        sig = std(texNat(:));
+        sig = 40;
         x = texNat(:);
         u = tiedrank(x) / numel(x);    % convert to uniform
         x = norminv(u, mu, sig);     % feed through inverse CDF to convert to Gaussian
@@ -73,27 +73,21 @@ for count = 1 : 20
         texPhs = texPhs + 127.5;
         texWhn = texWhn + 127.5;
         
-        % contrast adjustment
-        scale = @(x) (x - prctile(x(:), 0.1)) / diff(prctile(x(:), [0.1 99.9])) * 255;
         
-        texNat = scale(texNat);
-        texPhs = scale(texPhs);
-        texWhn = scale(texWhn);
- 
         
-        textures(f).nat = uint8(texNat); 
-        textures(f).phs = uint8(texPhs); 
-        textures(f).whn = uint8(texWhn); 
+        textures(f).nat = uint8(texNat);
+        textures(f).phs = uint8(texPhs);
+        textures(f).whn = uint8(texWhn);
         textures(f).org = uint8(texPre);
-        textures(f).source = files(f); 
- 
-        toc       
+        textures(f).source = files(f);
+        
+        toc
         
     end
     
-    textures(1).githash = 'd9b90d7be41fdb9b0c6ceab6e5c238ef68a6f4f2'; %for good version control ;)
     idx = randperm(length(textures));
     textures = textures(idx);
+    textures(1).githash = 'd9b90d7be41fdb9b0c6ceab6e5c238ef68a6f4f2'; %for good version control ;)
     
     save(sprintf('/mnt/lab/users/leon/leon_textures/NatImTextures_%d',count),'textures')
 end
