@@ -87,7 +87,7 @@ for count = 1 : 20
     
     idx = randperm(length(textures));
     textures = textures(idx);
-    textures(1).githash = 'd9b90d7be41fdb9b0c6ceab6e5c238ef68a6f4f2'; %for good version control ;)
+    textures(1).githash = '9a89d5c0cc4cc80785d6faf1c7cf4f49cb07a609'; %for good version control ;)
     
     save(sprintf('/mnt/lab/users/leon/leon_textures/NatImTextures_%d',count),'textures')
 end
