@@ -73,36 +73,25 @@ for count = 1 : 20
         texPhs = texPhs + 127.5;
         texWhn = texWhn + 127.5;
         
-        %clip to [0 255]
-        mi = min(texNat(:));
-        ma = max(texNat(:));
-        dm = ma - mi;
-        texNat = 255 * (texNat + abs(mi)) / dm;
+        % contrast adjustment
+        scale = @(x) (x - prctile(x(:), 0.1)) / diff(prctile(x(:), [0.1 99.9])) * 255;
         
-        mi = min(texPhs(:));
-        ma = max(texPhs(:));
-        dm = ma - mi;
-        texPhs = 255 * (texPhs + abs(mi)) / dm;
+        texNat = scale(texNat);
+        texPhs = scale(texPhs);
+        texWhn = scale(texWhn);
+ 
         
-        mi = min(texWhn(:));
-        ma = max(texWhn(:));
-        dm = ma - mi;
-        texWhn = 255 * (texWhn + abs(mi)) / dm;
-        
-        
-        textures(f).nat = uint8(texNat); %#ok<AGROW>
-        textures(f).phs = uint8(texPhs); %#ok<AGROW>
-        textures(f).whn = uint8(texWhn); %#ok<AGROW>
+        textures(f).nat = uint8(texNat); 
+        textures(f).phs = uint8(texPhs); 
+        textures(f).whn = uint8(texWhn); 
         textures(f).org = uint8(texPre);
-        textures(f).source = files(f); %#ok<AGROW>
-        
-        
-        toc
-        
+        textures(f).source = files(f); 
+ 
+        toc       
         
     end
     
-    textures.githash = '150a50ae022f812fb47ee4c19710fdc2f5d16efe'; %for good version control ;)
+    textures(1).githash = '150a50ae022f812fb47ee4c19710fdc2f5d16efe'; %for good version control ;)
     idx = randperm(length(textures));
     textures = textures(idx);
     
