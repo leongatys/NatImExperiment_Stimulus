@@ -91,7 +91,7 @@ for count = 1 : 20
         
     end
     
-    textures(1).githash = '150a50ae022f812fb47ee4c19710fdc2f5d16efe'; %for good version control ;)
+    textures(1).githash = 'd9b90d7be41fdb9b0c6ceab6e5c238ef68a6f4f2'; %for good version control ;)
     idx = randperm(length(textures));
     textures = textures(idx);
     
